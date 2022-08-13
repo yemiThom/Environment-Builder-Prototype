@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class AssetPlacementController : MonoBehaviour
 {
-    [SerializeField] GameObject[] _placeableAssetPrefabs;
+    [SerializeField] GameObject[] _placeableEvergreenPrefabs;
+    [SerializeField] GameObject[] _placeableBirchPrefabs;
 
-    
-
-    public void HandleAssetPlacement(int assetToPlace)
+    public void SpawnEvergreenBlueprint(int evergreenToSpawn)
     {
+        Instantiate(_placeableEvergreenPrefabs[evergreenToSpawn], transform.position, transform.rotation);
+    }
 
+    public void SpawnBirchBlueprint(int birchToSpawn)
+    {
+        Instantiate(_placeableBirchPrefabs[birchToSpawn], transform.position, transform.rotation);
     }
 }
