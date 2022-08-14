@@ -13,6 +13,11 @@ public class InputManager : MonoBehaviour
     private void Update() {
         UpdateSelectedAsset();
         DeleteSelectedAsset();
+
+        if(InputManager.Instance.GetKeyPressed(KeyCode.L))
+        {
+            DeleteAllAssets();
+        }
     }
 
     private void UpdateSelectedAsset()
@@ -42,6 +47,16 @@ public class InputManager : MonoBehaviour
 
         if(GetKeyPressed(KeyCode.Delete))
             Destroy(GameController.Instance.GetSelectedAsset());
+    }
+    
+    private void DeleteAllAssets()
+    {
+        foreach (GameObject asset in GameController.Instance.GetSpawnedAssetList())
+        {
+            Destroy(asset);
+        }
+
+        GameController.Instance.ResetSpawnedAssetList();
     }
 
     public bool GetKeyPressed(KeyCode keycode)

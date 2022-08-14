@@ -44,6 +44,7 @@ public class AssetBlueprintController : MonoBehaviour
             GameObject spawnedAsset = Instantiate(_assetPrefab, transform.position, transform.rotation);
 
             GameController.Instance.SetSelectedAsset(spawnedAsset);
+            GameController.Instance.AddToSpawnedAssetsList(spawnedAsset);
 
             Destroy(gameObject);
         }
