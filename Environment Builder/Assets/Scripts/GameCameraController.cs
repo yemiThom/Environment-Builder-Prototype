@@ -53,40 +53,40 @@ public class GameCameraController : MonoBehaviour
         }
 
         // Pan foward, back, left and right
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if(InputManager.Instance.GetKeyPressed(KeyCode.W) || InputManager.Instance.GetKeyPressed(KeyCode.UpArrow))
         {
             _newPosition += (transform.forward * _movementSpeed);
         }
-        if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        if(InputManager.Instance.GetKeyPressed(KeyCode.S) || InputManager.Instance.GetKeyPressed(KeyCode.DownArrow))
         {
             _newPosition += (transform.forward * -_movementSpeed);
         }
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if(InputManager.Instance.GetKeyPressed(KeyCode.A) || InputManager.Instance.GetKeyPressed(KeyCode.LeftArrow))
         {
             _newPosition += (transform.right * -_movementSpeed);
         }
-        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if(InputManager.Instance.GetKeyPressed(KeyCode.D) || InputManager.Instance.GetKeyPressed(KeyCode.RightArrow))
         {
             _newPosition += (transform.right * _movementSpeed);
         }
 
         // Rotate around world position
-        if(Input.GetKey(KeyCode.Q))
+        if(InputManager.Instance.GetKeyPressed(KeyCode.Q))
         {
             _newRotation *= Quaternion.Euler(Vector3.up * _rotation);
         }
-        if(Input.GetKey(KeyCode.E))
+        if(InputManager.Instance.GetKeyPressed(KeyCode.E))
         {
             _newRotation *= Quaternion.Euler(Vector3.up * -_rotation);
         }
 
         // Zoom in and out by updating the childed camera object's local position
-        if(Input.GetKey(KeyCode.R))
+        if(InputManager.Instance.GetKeyPressed(KeyCode.R))
         {
             _newZoom += _zoomAmount;
             _zoomedIn = true;
         }
-        if(Input.GetKey(KeyCode.F))
+        if(InputManager.Instance.GetKeyPressed(KeyCode.F))
         {
             _newZoom -= _zoomAmount;
             _zoomedIn = false;

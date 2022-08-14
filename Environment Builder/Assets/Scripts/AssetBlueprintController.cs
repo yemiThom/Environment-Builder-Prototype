@@ -32,16 +32,19 @@ public class AssetBlueprintController : MonoBehaviour
             transform.position = hit.point;
 
             if(!_canRotate)  return;
-            
+
             transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
         }
     }
 
     private void SpawnAtPosition()
     {
-        if(Input.GetMouseButton(0))
+        if(InputManager.Instance.GetMouseButtonPressed(0))
         {
-            Instantiate(_assetPrefab, transform.position, transform.rotation);
+            GameObject spawnedAsset = Instantiate(_assetPrefab, transform.position, transform.rotation);
+
+            GameController.Instance.SetSelectedAsset(spawnedAsset);
+
             Destroy(gameObject);
         }
     }
