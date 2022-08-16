@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     public static GameController Instance { get; private set; }
 
     [SerializeField] private List<GameObject> _allSpawnedAssets;
+    [SerializeField] private AssetController[] _assetControllers;
 
     private void Awake() {
         Instance = this;
@@ -21,7 +22,15 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        
+        if(InputManager.Instance.GetKeyPressed(KeyCode.K))
+        {
+            Save();
+        }
+
+        if(InputManager.Instance.GetKeyPressed(KeyCode.L))
+        {
+            Load();
+        }
     }
 
     public GameObject GetSelectedAsset()
@@ -40,6 +49,11 @@ public class GameController : MonoBehaviour
         _allSpawnedAssets.Add(newSpawnedAsset);
     }
 
+    public void RemoveFromSpawnedAssetsList(GameObject spawnedAsset)
+    {
+        _allSpawnedAssets.Remove(spawnedAsset);
+    }
+
     public List<GameObject> GetSpawnedAssetList()
     {
         return _allSpawnedAssets;
@@ -48,5 +62,55 @@ public class GameController : MonoBehaviour
     public void ResetSpawnedAssetList()
     {
         _allSpawnedAssets = new List<GameObject>();
+    }
+
+    public void Save()
+    {
+        Debug.Log("Saving...");
+
+        if(_assetControllers.Length == 0)
+        {
+            _assetControllers = new AssetController[_allSpawnedAssets.Count];
+        }
+
+        for (int i = 0; i < _allSpawnedAssets.Count; i++)
+        {
+            _assetControllers[i] = _allSpawnedAssets[i].transform.GetComponent<AssetController>();
+        }
+
+        SaveSystem.Save(_assetControllers);
+    }
+
+    public void Load()
+    {
+        Debug.Log("Loading...");
+
+        AllAssetsData dataStates = SaveSystem.Load();
+
+        for (int i = 0; i < dataStates.assetDataStates.Length; i++)
+        {
+            GameObject loadedAsset = Instantiate(Resources.Load(dataStates.assetDataStates[i]._assetName)) as GameObject;
+
+            Vector3 assetPos = new Vector3(
+                dataStates.assetDataStates[i]._assetPosition[0],
+                dataStates.assetDataStates[i]._assetPosition[1],
+                dataStates.assetDataStates[i]._assetPosition[2]
+            );
+            Quaternion assetRot = new Quaternion(
+                dataStates.assetDataStates[i]._assetRotation[0],
+                dataStates.assetDataStates[i]._assetRotation[1],
+                dataStates.assetDataStates[i]._assetRotation[2],
+                dataStates.assetDataStates[i]._assetRotation[3]
+            );
+            Vector3 assetScale = new Vector3(
+                dataStates.assetDataStates[i]._assetScale[0],
+                dataStates.assetDataStates[i]._assetScale[1],
+                dataStates.assetDataStates[i]._assetScale[2]
+            );
+
+            loadedAsset.transform.position = assetPos;
+            loadedAsset.transform.rotation = assetRot;
+            loadedAsset.transform.localScale = assetScale;
+        }
     }
 }

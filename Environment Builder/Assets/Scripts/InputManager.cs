@@ -46,7 +46,10 @@ public class InputManager : MonoBehaviour
         if(GameController.Instance.GetSelectedAsset() == null) return;
 
         if(GetKeyPressed(KeyCode.Delete))
+        {
+            GameController.Instance.RemoveFromSpawnedAssetsList(GameController.Instance.GetSelectedAsset());
             Destroy(GameController.Instance.GetSelectedAsset());
+        }
     }
     
     private void DeleteAllAssets()

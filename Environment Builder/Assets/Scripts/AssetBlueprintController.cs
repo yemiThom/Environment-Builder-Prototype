@@ -43,6 +43,8 @@ public class AssetBlueprintController : MonoBehaviour
         {
             GameObject spawnedAsset = Instantiate(_assetPrefab, transform.position, transform.rotation);
 
+            spawnedAsset.name = _assetPrefab.name;
+
             GameController.Instance.SetSelectedAsset(spawnedAsset);
             GameController.Instance.AddToSpawnedAssetsList(spawnedAsset);
 
