@@ -31,6 +31,13 @@ public class GameController : MonoBehaviour
         {
             Load();
         }
+
+        DeleteSelectedAsset();
+
+        if(InputManager.Instance.GetKeyPressed(KeyCode.L))
+        {
+            DeleteAllAssets();
+        }
     }
 
     public GameObject GetSelectedAsset()
@@ -62,6 +69,27 @@ public class GameController : MonoBehaviour
     public void ResetSpawnedAssetList()
     {
         _allSpawnedAssets = new List<GameObject>();
+    }    
+
+    public void DeleteSelectedAsset()
+    {
+        if(GetSelectedAsset() == null) return;
+
+        if(InputManager.Instance.GetKeyPressed(KeyCode.Delete))
+        {
+            RemoveFromSpawnedAssetsList(GetSelectedAsset());
+            Destroy(GetSelectedAsset());
+        }
+    }
+    
+    public void DeleteAllAssets()
+    {
+        foreach (GameObject asset in GetSpawnedAssetList())
+        {
+            Destroy(asset);
+        }
+
+        ResetSpawnedAssetList();
     }
 
     public void Save()
@@ -85,11 +113,15 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("Loading...");
 
+        DeleteAllAssets();
+
         AllAssetsData dataStates = SaveSystem.Load();
 
         for (int i = 0; i < dataStates.assetDataStates.Length; i++)
         {
             GameObject loadedAsset = Instantiate(Resources.Load(dataStates.assetDataStates[i]._assetName)) as GameObject;
+            
+            AddToSpawnedAssetsList(loadedAsset);
 
             Vector3 assetPos = new Vector3(
                 dataStates.assetDataStates[i]._assetPosition[0],
