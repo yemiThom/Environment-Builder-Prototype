@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
+    [SerializeField] private CanvasGroup[] _subMenuCGs;
+
     void Start()
     {
         
@@ -27,5 +29,15 @@ public class UIController : MonoBehaviour
 
         cg.interactable = !cg.interactable;
         cg.blocksRaycasts  = !cg.blocksRaycasts;
+    }
+
+    public void TurnOffAllSubMenuCGs()
+    {
+        foreach (CanvasGroup cg in _subMenuCGs)
+        {
+            cg.alpha = 0;
+            cg.interactable = false;
+            cg.blocksRaycasts  = false;
+        }
     }
 }

@@ -5,21 +5,27 @@ using UnityEngine;
 public class AssetPlacementController : MonoBehaviour
 {
     [SerializeField] GameObject[] _placeableGroundPrefabs;
-    [SerializeField] GameObject[] _placeableEvergreenPrefabs;
-    [SerializeField] GameObject[] _placeableBirchPrefabs;
+    [SerializeField] GameObject[] _placeableFloraPrefabs;
+    [SerializeField] GameObject[] _placeableRockPrefabs;
+    [SerializeField] GameObject[] _placeableMountainPrefabs;
 
     public void SpawnGoundBlueprint(int groundToSpawn)
     {
         Instantiate(_placeableGroundPrefabs[groundToSpawn], transform.position, transform.rotation);
     }
 
-    public void SpawnEvergreenBlueprint(int evergreenToSpawn)
+    public void SpawnFloraBlueprint(int floraToSpawn)
     {
-        Instantiate(_placeableEvergreenPrefabs[evergreenToSpawn], transform.position, transform.rotation);
+        Instantiate(_placeableFloraPrefabs[floraToSpawn], transform.position, transform.rotation);
     }
 
-    public void SpawnBirchBlueprint(int birchToSpawn)
+    public void SpawnRockBlueprint(int rockToSpawn)
     {
-        Instantiate(_placeableBirchPrefabs[birchToSpawn], transform.position, transform.rotation);
+        Instantiate(_placeableRockPrefabs[rockToSpawn], transform.position, transform.rotation);
+    }
+
+    public void SpawnMountainBlueprint(int mountainToSpawn)
+    {
+        Instantiate(_placeableMountainPrefabs[mountainToSpawn], transform.position, transform.rotation);
     }
 }
