@@ -32,7 +32,10 @@ public class GameController : MonoBehaviour
             Load();
         }
 
-        DeleteSelectedAsset();
+        if(InputManager.Instance.GetKeyPressed(KeyCode.Delete))
+        {
+            DeleteSelectedAsset();
+        }
 
         if(InputManager.Instance.GetKeyPressed(KeyCode.L))
         {
@@ -74,12 +77,9 @@ public class GameController : MonoBehaviour
     public void DeleteSelectedAsset()
     {
         if(GetSelectedAsset() == null) return;
-
-        if(InputManager.Instance.GetKeyPressed(KeyCode.Delete))
-        {
-            RemoveFromSpawnedAssetsList(GetSelectedAsset());
-            Destroy(GetSelectedAsset());
-        }
+        
+        RemoveFromSpawnedAssetsList(GetSelectedAsset());
+        Destroy(GetSelectedAsset());
     }
     
     public void DeleteAllAssets()
