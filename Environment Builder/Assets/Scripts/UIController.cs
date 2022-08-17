@@ -13,4 +13,19 @@ public class UIController : MonoBehaviour
     {
         
     }
+
+    public void UpdateCanvasGroupState(CanvasGroup cg)
+    {
+        if(cg.alpha == 0)
+        {
+            cg.alpha = 1;
+        }
+        else
+        {
+            cg.alpha = 0;
+        }
+
+        cg.interactable = !cg.interactable;
+        cg.blocksRaycasts  = !cg.blocksRaycasts;
+    }
 }
