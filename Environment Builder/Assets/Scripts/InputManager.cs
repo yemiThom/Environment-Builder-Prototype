@@ -27,7 +27,7 @@ public class InputManager : MonoBehaviour
                 {
                     GameController.Instance.SetSelectedAsset(hit.transform.gameObject);
                 }
-                else
+                else if(hit.transform.tag.Contains("Untagged"))
                 {
                     GameController.Instance.SetSelectedAsset(null);
                 }

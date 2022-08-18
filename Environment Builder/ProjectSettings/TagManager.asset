@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SelectableAsset
   - VoidPlane
+  - UI
   layers:
   - Default
   - TransparentFX
