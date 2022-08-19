@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameCameraController : MonoBehaviour
 {
+    
+#if UNITY_EDITOR
+
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _normalSpeed;
     [SerializeField] private float _fastSpeed;
@@ -99,4 +102,5 @@ public class GameCameraController : MonoBehaviour
         _newZoom.z = Mathf.Clamp(_newZoom.z, -_maxZoom, -_minZoom);
         _cameraTransform.localPosition = Vector3.Lerp(_cameraTransform.localPosition, _newZoom, Time.deltaTime * _movementTime);
     }
+#endif
 }

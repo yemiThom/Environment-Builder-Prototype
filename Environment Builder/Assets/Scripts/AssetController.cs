@@ -4,20 +4,15 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class AssetController : MonoBehaviour
-{
+{   
+#if UNITY_EDITOR
+
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _scaleRate;
 
     private Vector3 _mousePosOffset;
 
     private float _mouseZCoord;
-
-    
-
-    private void Start()
-    {
-        
-    }
 
     private void Update()
     {
@@ -75,4 +70,5 @@ public class AssetController : MonoBehaviour
             transform.localScale -= new Vector3(_scaleRate, _scaleRate, _scaleRate);
         }
     }
+#endif
 }
