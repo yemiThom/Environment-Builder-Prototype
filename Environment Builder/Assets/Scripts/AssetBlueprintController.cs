@@ -12,8 +12,11 @@ public class AssetBlueprintController : MonoBehaviour
 
     private RaycastHit hit;
 
+    private CommandManager _commandManager;
+
     private void Start()
     {
+        _commandManager = GameObject.FindObjectOfType<CommandManager>();
         MoveToHitPosition();
     }
 
@@ -21,6 +24,7 @@ public class AssetBlueprintController : MonoBehaviour
     {
         MoveToHitPosition();
         SpawnAtPosition();
+        ExitBlueprintSpawner();
     }
 
     private void MoveToHitPosition()
@@ -41,13 +45,24 @@ public class AssetBlueprintController : MonoBehaviour
     {
         if(InputManager.Instance.GetMouseButtonPressed(0))
         {
-            GameObject spawnedAsset = Instantiate(_assetPrefab, transform.position, transform.rotation);
+            CommandInstantiate commandInstantiate = new CommandInstantiate(_assetPrefab, transform.position, transform.rotation);
+            _commandManager.ExecuteCommand(commandInstantiate);
+
+            GameObject spawnedAsset = commandInstantiate.GetSpawnedAsset();
 
             spawnedAsset.name = _assetPrefab.name;
 
             GameController.Instance.SetSelectedAsset(spawnedAsset);
             GameController.Instance.AddToSpawnedAssetsList(spawnedAsset);
 
+            Destroy(gameObject);
+        }
+    }
+
+    private void ExitBlueprintSpawner()
+    {
+        if(InputManager.Instance.GetMouseButtonPressed(1))
+        {
             Destroy(gameObject);
         }
     }

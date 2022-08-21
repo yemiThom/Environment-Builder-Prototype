@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class AssetPlacementController : MonoBehaviour
 {
-    [SerializeField] GameObject[] _placeableGroundPrefabs;
-    [SerializeField] GameObject[] _placeableFloraPrefabs;
-    [SerializeField] GameObject[] _placeableRockPrefabs;
-    [SerializeField] GameObject[] _placeableMountainPrefabs;
+    [SerializeField] private GameObject[] _placeableGroundPrefabs;
+    [SerializeField] private GameObject[] _placeableFloraPrefabs;
+    [SerializeField] private GameObject[] _placeableRockPrefabs;
+    [SerializeField] private GameObject[] _placeableMountainPrefabs;
 
     public void SpawnGoundBlueprint(int groundToSpawn)
     {
