@@ -12,11 +12,12 @@ public class AssetController : MonoBehaviour
 
     private float _mouseZCoord;
 
+    private CommandManager _commandManager;
     
 
     private void Start()
     {
-        
+        _commandManager = GameObject.FindObjectOfType<CommandManager>();
     }
 
     private void Update()
@@ -53,11 +54,14 @@ public class AssetController : MonoBehaviour
         if(InputManager.Instance.GetKeyPressed(KeyCode.Z))
         {
             transform.Rotate(Vector3.up * _rotationSpeed * Time.deltaTime);
+            _commandManager.ExecuteCommand(new CommandRotate(this.transform));            
         }
+        
 
         if(InputManager.Instance.GetKeyPressed(KeyCode.X))
         {
             transform.Rotate(Vector3.up * -_rotationSpeed * Time.deltaTime);
+            _commandManager.ExecuteCommand(new CommandRotate(this.transform));  
         }  
     }
 
@@ -68,11 +72,13 @@ public class AssetController : MonoBehaviour
         if(InputManager.Instance.GetKeyPressed(KeyCode.C))
         {
             transform.localScale += new Vector3(_scaleRate, _scaleRate, _scaleRate);
+            _commandManager.ExecuteCommand(new CommandScale(this.transform));
         }
 
         if(InputManager.Instance.GetKeyPressed(KeyCode.V))
         {
             transform.localScale -= new Vector3(_scaleRate, _scaleRate, _scaleRate);
+            _commandManager.ExecuteCommand(new CommandScale(this.transform));
         }
     }
 }
