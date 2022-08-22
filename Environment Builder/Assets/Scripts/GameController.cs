@@ -79,7 +79,14 @@ public class GameController : MonoBehaviour
         if(GetSelectedAsset() == null) return;
         
         GetSelectedAsset().GetComponent<AssetController>().SnapRotateAsset(degrees);
-    }  
+    }
+
+    public void ScaleAssetByFactor(float scaleFactor)
+    {
+        if(GetSelectedAsset() == null) return;
+        
+        GetSelectedAsset().GetComponent<AssetController>().SnapScaleAsset(scaleFactor);
+    }
 
     public void DeleteSelectedAsset()
     {

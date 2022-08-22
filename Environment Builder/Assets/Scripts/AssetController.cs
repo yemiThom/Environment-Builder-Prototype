@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class AssetController : MonoBehaviour
 {
-    [SerializeField] private float _rotationSpeed;
+    [SerializeField] private float _rotationDegrees;
     [SerializeField] private float _scaleRate;
 
     private Vector3 _mousePosOffset;
@@ -53,14 +53,14 @@ public class AssetController : MonoBehaviour
 
         if(InputManager.Instance.GetKeyPressed(KeyCode.Z))
         {
-            Vector3 rotationToAdd = new Vector3(0, -20, 0);
+            Vector3 rotationToAdd = new Vector3(0, -_rotationDegrees, 0);
             _commandManager.ExecuteCommand(new CommandRotate(this.transform, rotationToAdd));            
         }
         
 
         if(InputManager.Instance.GetKeyPressed(KeyCode.X))
         {
-            Vector3 rotationToAdd = new Vector3(0, 20, 0);
+            Vector3 rotationToAdd = new Vector3(0, _rotationDegrees, 0);
             _commandManager.ExecuteCommand(new CommandRotate(this.transform, rotationToAdd));  
         }  
     }
@@ -71,14 +71,14 @@ public class AssetController : MonoBehaviour
 
         if(InputManager.Instance.GetKeyPressed(KeyCode.C))
         {
-            transform.localScale += new Vector3(_scaleRate, _scaleRate, _scaleRate);
-            _commandManager.ExecuteCommand(new CommandScale(this.transform));
+            //transform.localScale += new Vector3(_scaleRate, _scaleRate, _scaleRate);
+            _commandManager.ExecuteCommand(new CommandScale(this.transform, _scaleRate));
         }
 
         if(InputManager.Instance.GetKeyPressed(KeyCode.V))
         {
-            transform.localScale -= new Vector3(_scaleRate, _scaleRate, _scaleRate);
-            _commandManager.ExecuteCommand(new CommandScale(this.transform));
+            //transform.localScale -= new Vector3(_scaleRate, _scaleRate, _scaleRate);
+            _commandManager.ExecuteCommand(new CommandScale(this.transform, _scaleRate));
         }
     }
 
@@ -88,5 +88,12 @@ public class AssetController : MonoBehaviour
 
         Vector3 rotationToAdd = new Vector3(0, degrees, 0);
         _commandManager.ExecuteCommand(new CommandRotate(this.transform, rotationToAdd));
+    }
+
+    public void SnapScaleAsset(float scaleFactor)
+    {
+        if(GameController.Instance.GetSelectedAsset() != this.gameObject) return;
+
+        _commandManager.ExecuteCommand(new CommandScale(this.transform, scaleFactor));
     }
 }

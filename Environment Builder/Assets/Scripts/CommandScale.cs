@@ -5,26 +5,21 @@ using UnityEngine;
 public class CommandScale : IAction
 {
     private Transform _assetToScale;
-    private Vector3 _assetScale;
+    private float _scaleFactor;
 
-    public CommandScale(Transform assetToScale)
+    public CommandScale(Transform assetToScale, float scaleFactor)
     {
         _assetToScale = assetToScale;
-        _assetScale = assetToScale.localScale;
+        _scaleFactor = scaleFactor;
     }
 
     public void ExecuteCommand()
     {
-        SetAssetScale();
+        _assetToScale.localScale += new Vector3(_scaleFactor, _scaleFactor, _scaleFactor);
     }
 
     public void UndoCommand()
     {
-        SetAssetScale();
-    }
-
-    private void SetAssetScale()
-    {
-        _assetToScale.localScale = _assetScale;
+        _assetToScale.localScale -= new Vector3(_scaleFactor, _scaleFactor, _scaleFactor);
     }
 }
