@@ -4,7 +4,9 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class AssetController : MonoBehaviour
-{
+{   
+#if UNITY_EDITOR
+
     [SerializeField] private float _rotationDegrees;
     [SerializeField] private float _scaleRate;
 
@@ -96,4 +98,5 @@ public class AssetController : MonoBehaviour
 
         _commandManager.ExecuteCommand(new CommandScale(this.transform, scaleFactor));
     }
+#endif
 }

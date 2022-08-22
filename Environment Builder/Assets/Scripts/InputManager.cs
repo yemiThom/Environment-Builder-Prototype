@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
 
     private void Update() {
         UpdateSelectedAsset();
+        CheckTouchedAsset();
     }
 
     private void UpdateSelectedAsset()
@@ -30,6 +31,30 @@ public class InputManager : MonoBehaviour
                 else if(hit.transform.tag.Contains("Untagged"))
                 {
                     GameController.Instance.SetSelectedAsset(null);
+                }
+            }
+        }
+
+
+    }
+
+    private void CheckTouchedAsset()
+    {
+        if(Input.touchCount > 0)
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+
+            if(Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                if(hit.transform.gameObject == GameController.Instance.GetSelectedAsset())
+                {
+                    AssetTouchController touchController = hit.transform.GetComponent<AssetTouchController>();
+
+                    if(touchController.GetAssetHeld())
+                        touchController.ResetTimer();
+                    
+                    touchController.ActivateTouchOnAsset();
                 }
             }
         }
