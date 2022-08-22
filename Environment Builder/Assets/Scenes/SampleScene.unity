@@ -777,6 +777,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 298232999201997118, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1550581963}
+    - target: {fileID: 298232999201997118, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UndoCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 298232999201997118, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CommandManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 384800815889276394, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -884,10 +896,14 @@ PrefabInstance:
     - target: {fileID: 641139688973794223, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1550581961}
+      objectReference: {fileID: 1550581963}
     - target: {fileID: 641139688973794223, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DeleteSelectedAsset
+      value: RedoCommand
+      objectReference: {fileID: 0}
+    - target: {fileID: 641139688973794223, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CommandManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 702698671792699118, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1501,6 +1517,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4468120865328457008, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1550581961}
+    - target: {fileID: 4468120865328457008, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DeleteAllAssets
+      objectReference: {fileID: 0}
     - target: {fileID: 4494432318669222916, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1636,6 +1660,14 @@ PrefabInstance:
     - target: {fileID: 5398025964981080722, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DeleteAllAssets
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440849603964612757, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1550581961}
+    - target: {fileID: 5440849603964612757, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DeleteSelectedAsset
       objectReference: {fileID: 0}
     - target: {fileID: 5469855678767927103, guid: 46acca404bcef164cb246ed4f3c00765, type: 3}
       propertyPath: m_TagString

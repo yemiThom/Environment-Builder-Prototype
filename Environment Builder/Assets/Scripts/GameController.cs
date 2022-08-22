@@ -32,12 +32,12 @@ public class GameController : MonoBehaviour
             Load();
         }
 
-        if(InputManager.Instance.GetKeyPressed(KeyCode.Delete))
+        if(InputManager.Instance.GetKeyPressed(KeyCode.Backspace))
         {
             DeleteSelectedAsset();
         }
 
-        if(InputManager.Instance.GetKeyPressed(KeyCode.L))
+        if(InputManager.Instance.GetKeyPressed(KeyCode.Delete))
         {
             DeleteAllAssets();
         }
@@ -72,7 +72,14 @@ public class GameController : MonoBehaviour
     public void ResetSpawnedAssetList()
     {
         _allSpawnedAssets = new List<GameObject>();
-    }    
+    }  
+
+    public void RotateAssetByDegrees(float degrees)
+    {
+        if(GetSelectedAsset() == null) return;
+        
+        GetSelectedAsset().GetComponent<AssetController>().SnapRotateAsset(degrees);
+    }  
 
     public void DeleteSelectedAsset()
     {

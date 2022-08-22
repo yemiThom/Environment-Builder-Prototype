@@ -53,15 +53,15 @@ public class AssetController : MonoBehaviour
 
         if(InputManager.Instance.GetKeyPressed(KeyCode.Z))
         {
-            transform.Rotate(Vector3.up * _rotationSpeed * Time.deltaTime);
-            _commandManager.ExecuteCommand(new CommandRotate(this.transform));            
+            Vector3 rotationToAdd = new Vector3(0, -20, 0);
+            _commandManager.ExecuteCommand(new CommandRotate(this.transform, rotationToAdd));            
         }
         
 
         if(InputManager.Instance.GetKeyPressed(KeyCode.X))
         {
-            transform.Rotate(Vector3.up * -_rotationSpeed * Time.deltaTime);
-            _commandManager.ExecuteCommand(new CommandRotate(this.transform));  
+            Vector3 rotationToAdd = new Vector3(0, 20, 0);
+            _commandManager.ExecuteCommand(new CommandRotate(this.transform, rotationToAdd));  
         }  
     }
 
@@ -80,5 +80,13 @@ public class AssetController : MonoBehaviour
             transform.localScale -= new Vector3(_scaleRate, _scaleRate, _scaleRate);
             _commandManager.ExecuteCommand(new CommandScale(this.transform));
         }
+    }
+
+    public void SnapRotateAsset(float degrees)
+    {
+        if(GameController.Instance.GetSelectedAsset() != this.gameObject) return;
+
+        Vector3 rotationToAdd = new Vector3(0, degrees, 0);
+        _commandManager.ExecuteCommand(new CommandRotate(this.transform, rotationToAdd));
     }
 }

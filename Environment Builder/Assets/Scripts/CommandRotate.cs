@@ -6,21 +6,25 @@ public class CommandRotate : IAction
 {   
     private Transform _assetToRotate;
     private Quaternion _assetRotation;
+    private Vector3 _rotationToAdd;
 
-    public CommandRotate(Transform assetToRotate)
+    public CommandRotate(Transform assetToRotate, Vector3 rotationToAdd)
     {
         _assetToRotate = assetToRotate;
         _assetRotation = assetToRotate.rotation;
+        _rotationToAdd = rotationToAdd;
     }
 
     public void ExecuteCommand()
     {
-        SetAssetRotation();
+        //SetAssetRotation();
+        _assetToRotate.Rotate(_rotationToAdd);
     }
 
     public void UndoCommand()
     {
-        SetAssetRotation();
+        //SetAssetRotation();
+        _assetToRotate.Rotate(-_rotationToAdd);
     }
 
     private void SetAssetRotation()
