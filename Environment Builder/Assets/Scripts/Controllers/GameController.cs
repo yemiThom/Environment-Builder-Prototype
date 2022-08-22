@@ -9,6 +9,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private List<GameObject> _allSpawnedAssets;
     [SerializeField] private AssetController[] _assetControllers;
 
+    [SerializeField] private GameCameraTouchController _camTouchController;
+    [SerializeField] private bool _touchCamActive = true;
+
     private void Awake() {
         Instance = this;
     }
@@ -104,6 +107,13 @@ public class GameController : MonoBehaviour
         }
 
         ResetSpawnedAssetList();
+    }
+
+    public void ToggleCamTouchControls()
+    {
+        _camTouchController.SetCamActivator(!_touchCamActive);
+
+        _touchCamActive = !_touchCamActive;
     }
 
     public void Save()

@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour
 
     private void Update() {
         UpdateSelectedAsset();
-        CheckTouchedAsset();
+        // CheckTouchedAsset();
     }
 
     private void UpdateSelectedAsset()
@@ -51,10 +51,10 @@ public class InputManager : MonoBehaviour
                 {
                     AssetTouchController touchController = hit.transform.GetComponent<AssetTouchController>();
 
-                    if(touchController.GetAssetHeld())
-                        touchController.ResetTimer();
+                    // if(touchController.GetAssetHeld())
+                    //     touchController.ResetTimer();
                     
-                    touchController.ActivateTouchOnAsset();
+                    // touchController.ActivateTouchOnAsset();
                 }
             }
         }
