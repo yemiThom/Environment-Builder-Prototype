@@ -15,11 +15,15 @@ public class CommandRotate : IAction
 
     public void ExecuteCommand()
     {
+        if(_assetToRotate == null) return;
+
         _assetToRotate.Rotate(_rotationToAdd);
     }
 
     public void UndoCommand()
     {
+        if(_assetToRotate == null) return;
+        
         _assetToRotate.Rotate(-_rotationToAdd);
     }
 }

@@ -15,11 +15,15 @@ public class CommandScale : IAction
 
     public void ExecuteCommand()
     {
+        if(_assetToScale == null) return;
+
         _assetToScale.localScale += new Vector3(_scaleFactor, _scaleFactor, _scaleFactor);
     }
 
     public void UndoCommand()
     {
+        if(_assetToScale == null) return;
+
         _assetToScale.localScale -= new Vector3(_scaleFactor, _scaleFactor, _scaleFactor);
     }
 }
